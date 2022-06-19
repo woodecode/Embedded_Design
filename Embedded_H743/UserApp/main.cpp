@@ -25,7 +25,7 @@ void Main(){
     for(;;)
     {
         HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
-        HAL_Delay(300);
+        //test Git
         HAL_Delay(200);
     }
 
