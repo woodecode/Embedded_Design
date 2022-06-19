@@ -25,7 +25,6 @@ void Main(){
     for(;;)
     {
         HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
-        HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_2);
         HAL_Delay(200);
     }
 
