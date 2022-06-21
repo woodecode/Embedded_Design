@@ -36,6 +36,9 @@
 #include "user.h"
 #include "lvgl.h"
 #include "lv_port_disp.h"
+#include <cstdio>
+
+double_t voice_wav[8192]  __attribute__((section(".WAV"))) = {0};
 
 void Main(){
 
@@ -45,6 +48,7 @@ void Main(){
     lv_init();
     lv_port_disp_init();
     // Main loop
+    printf("\n%p",voice_wav);// voice_wav address
     for(;;)
     {
         HAL_Delay(200);
