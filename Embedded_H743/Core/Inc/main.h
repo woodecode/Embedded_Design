@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define TOUCHGFX_BUFFER_START_ADDR_1 0xD2000000
+#define TOUCHGFX_BUFFER_START_ADDR_2 0xD2261120
+#define LCD_BL_Pin GPIO_PIN_7
+#define LCD_BL_GPIO_Port GPIOD
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

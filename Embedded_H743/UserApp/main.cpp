@@ -2,9 +2,25 @@
  * CubeMX 重新生成工程后 CMakeList.txt会重置，需要重新添加一些参数设置
  * 一定注意要先更改设置后再Build工程！！
  *
- * CMake:->
- * 包含文件<file>: "UserApp/*.*" "DSP/*.*"
- * 头文件<include_directories>: DSP/Inc UserApp UserApp/Inc
+ * CMake:
+     * <file>:
+        {
+            "UserApp/*.*"
+            "BSP/*.*"
+            "DSP/*.*"
+            "GUI/lvgl/*.*"
+        }
+     * <include_directories>:
+        {
+            DSP/Inc
+            BSP/Inc
+            UserApp
+            UserApp/Inc
+            GUI/lvgl
+            GUI/lvgl/porting
+            GUI/lvgl/src/*
+            GUI/lvgl/src
+        }
  *
  * FreeRTOS:->
  * 如果使用了FreeRTOS,在CMakeLists.txt文件中找到
@@ -18,16 +34,48 @@
  *
  */
 #include "user.h"
+#include "lvgl.h"
+#include "lv_port_disp.h"
 
 void Main(){
 
+    // SD Init
+
+    // Screen Init
+    lv_init();
+    lv_port_disp_init();
+    // Main loop
     for(;;)
     {
-        HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_0);
         HAL_Delay(200);
     }
 
 }
+
+
+
+//The <void TimxCallbackxxHz()> function declaration is in the <stm32h7xx_it.c> file.
+extern "C" void TimxCallbackxxHz(){
+
+    // __HAL_TIM_CLEAR_IT(&htimx,TIM_IT_UPDATE);
+
+    // do something ...
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -47,17 +47,12 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-/* Definitions for defaultTask */
-osThreadId_t defaultTaskHandle;
-const osThreadAttr_t defaultTask_attributes = {
-  .name = "defaultTask",
-  .stack_size = 128 * 4,
+/* Definitions for taskTouchGFX */
+osThreadId_t taskTouchGFXHandle;
+const osThreadAttr_t taskTouchGFX_attributes = {
+  .name = "taskTouchGFX",
+  .stack_size = 2048 * 4,
   .priority = (osPriority_t) osPriorityNormal,
-};
-/* Definitions for scanButton */
-osEventFlagsId_t scanButtonHandle;
-const osEventFlagsAttr_t scanButton_attributes = {
-  .name = "scanButton"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,7 +60,7 @@ const osEventFlagsAttr_t scanButton_attributes = {
 
 /* USER CODE END FunctionPrototypes */
 
-void StartDefaultTask(void *argument);
+void TouchGFX_Task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -96,16 +91,12 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of defaultTask */
-  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  /* creation of taskTouchGFX */
+  taskTouchGFXHandle = osThreadNew(TouchGFX_Task, NULL, &taskTouchGFX_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
-
-  /* Create the event(s) */
-  /* creation of scanButton */
-  scanButtonHandle = osEventFlagsNew(&scanButton_attributes);
 
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
@@ -113,22 +104,22 @@ void MX_FREERTOS_Init(void) {
 
 }
 
-/* USER CODE BEGIN Header_StartDefaultTask */
+/* USER CODE BEGIN Header_TouchGFX_Task */
 /**
-  * @brief  Function implementing the defaultTask thread.
+  * @brief  Function implementing the taskTouchGFX thread.
   * @param  argument: Not used
   * @retval None
   */
-/* USER CODE END Header_StartDefaultTask */
-void StartDefaultTask(void *argument)
+/* USER CODE END Header_TouchGFX_Task */
+__weak void TouchGFX_Task(void *argument)
 {
-  /* USER CODE BEGIN StartDefaultTask */
+  /* USER CODE BEGIN TouchGFX_Task */
   /* Infinite loop */
   for(;;)
   {
     osDelay(1);
   }
-  /* USER CODE END StartDefaultTask */
+  /* USER CODE END TouchGFX_Task */
 }
 
 /* Private application code --------------------------------------------------*/
