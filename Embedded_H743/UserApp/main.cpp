@@ -2,7 +2,7 @@
  * CubeMX 重新生成工程后 CMakeList.txt会重置，需要重新添加一些参数设置
  * 一定注意要先更改设置后再Build工程！！
  *
- * CMake:
+ * CMakeLists.txt:
      * <file>:
         {
             "UserApp/*.*"
@@ -33,17 +33,19 @@
  * Description of DSP library：https://arm-software.github.io/CMSIS_5/DSP/html/modules.html
  *
  */
+#include "main.h"
 #include "user.h"
 #include "lvgl.h"
 #include "lv_port_disp.h"
 #include <cstdio>
-
+#include "fmc.h"
+#include "sdram.h"
 double_t voice_wav[8192]  __attribute__((section(".WAV"))) = {0};
 
 void Main(){
 
     // SD Init
-
+    SDRAM_Init(&hsdram2);
     // Screen Init
     lv_init();
     lv_port_disp_init();

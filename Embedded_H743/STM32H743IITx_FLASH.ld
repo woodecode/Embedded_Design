@@ -70,7 +70,7 @@ RAM_D3 (xrw)      : ORIGIN = 0x38000000, LENGTH = 64K
 ITCMRAM (xrw)      : ORIGIN = 0x00000000, LENGTH = 64K
 FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 2048K
 SDRAM2 (rxw)     : ORIGIN = 0xD2000000, LENGTH = 32768K
-WAV (rxw)  : ORIGIN = 0xD2000000, LENGTH = 32K /* 在SDRAM中开辟一块空间 */
+WAV_BUFFER (rxw)  : ORIGIN = 0xD2000000, LENGTH = 32K /* 在SDRAM中开辟一块空间 */
 }
 
 /* Define output sections */
